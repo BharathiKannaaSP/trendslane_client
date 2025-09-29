@@ -14,7 +14,6 @@ import { LogOut, Moon, Settings, Sun, User } from 'lucide-react'
 import { Button } from './ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { useTheme } from 'next-themes'
-import Navlink from '@/components/ui/NavLink'
 
 const Navbar = () => {
 	const { setTheme } = useTheme()
@@ -23,10 +22,10 @@ const Navbar = () => {
 		<nav className='p-4 flex items-center justify-between sticky top-0 z-10 bg-background'>
 			{/* Left */}
 			<div className='flex items-center gap-4'>
-				<Navlink label='Women' path='/women' />
+				{/* <Navlink label='Women' path='/women' />
 				<Navlink label='Men' path='/men' />
 				<Navlink label='Teen' path='/teen' />
-				<Navlink label='Kids' path='/kids' />
+				<Navlink label='Kids' path='/kids' /> */}
 			</div>
 			<div className='flex items-center gap-4'>
 				<Link href='/'>Dashboard</Link>
