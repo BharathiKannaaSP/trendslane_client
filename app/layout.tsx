@@ -5,16 +5,10 @@ import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { getUserCountryAndLanguage } from '@/lib/cookies/getUserCountryAndLanguage'
 import { LocationProvider } from '@/components/providers/LocationProvider'
-
-const geistSans = Geist({
-	variable: '--font-geist-sans',
-	subsets: ['latin']
-})
-
-const geistMono = Geist_Mono({
-	variable: '--font-geist-mono',
-	subsets: ['latin']
-})
+import localFont from 'next/font/local'
+import { poppins, trendslaneFont } from './font/font-configs'
+import Footer from '@/components/Footer'
+import Subscribe from '@/components/Subscribe'
 
 export const metadata: Metadata = {
 	title: 'Trendslane',
@@ -31,7 +25,7 @@ export default async function RootLayout({
 	return (
 		<html lang='en' suppressHydrationWarning>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+				className={`${trendslaneFont.className} ${poppins.variable} antialiased`}>
 				<ThemeProvider
 					attribute='class'
 					defaultTheme='system'
@@ -40,8 +34,10 @@ export default async function RootLayout({
 					<LocationProvider country={country} language={language}>
 						<main className='w-full'>
 							<Navbar />
+							<div>{children}</div>
+							<Subscribe />
+							<Footer />
 						</main>
-						<div className='px-4'>{children}</div>
 					</LocationProvider>
 				</ThemeProvider>
 			</body>

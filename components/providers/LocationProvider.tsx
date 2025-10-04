@@ -25,7 +25,6 @@ export const LocationProvider = ({
 	)
 }
 
-// Hook to use context easily
 export const useLocation = () => {
 	const ctx = useContext(LocationContext)
 	if (!ctx)
