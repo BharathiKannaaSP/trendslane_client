@@ -2,12 +2,10 @@ import React from 'react'
 import {
 	DialogClose,
 	DialogContent,
-	DialogDescription,
 	DialogFooter,
 	DialogHeader,
 	DialogTitle
 } from './ui/dialog'
-import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
 import {

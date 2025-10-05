@@ -70,8 +70,6 @@ const HomeGrids = () => {
 					<Typography className='text-xs md:text-sm'>See all</Typography>
 				</div>
 			</Link>
-
-			
 		</div>
 	)
 }

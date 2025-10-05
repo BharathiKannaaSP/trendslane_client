@@ -34,7 +34,7 @@ export default async function RootLayout({
 					<LocationProvider country={country} language={language}>
 						<main className='w-full'>
 							<Navbar />
-							<div>{children}</div>
+							{children}
 							<Subscribe />
 							<Footer />
 						</main>

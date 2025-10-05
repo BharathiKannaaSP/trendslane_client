@@ -28,7 +28,7 @@ export const middleware = async (req: NextRequest) => {
 
 	// Set language if missing
 	if (!languageCookie) {
-		setCookie(response, 'language', 'en') // Default to 'en'
+		setCookie(response, 'language', 'en')
 	}
 	return response
 }

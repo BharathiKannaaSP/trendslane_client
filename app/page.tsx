@@ -4,11 +4,7 @@ import Subscribe from '@/components/Subscribe'
 import React from 'react'
 
 const HomePage = () => {
-	return (
-		<div>
-			<BannerImage />
-		</div>
-	)
+	return <BannerImage />
 }
 
 export default HomePage

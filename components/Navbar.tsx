@@ -2,12 +2,11 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useTheme } from 'next-themes'
 import { Button } from './ui/button'
 import NavLink from './ui/nav-link'
 import { Typography } from './ui/typography'
-
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -16,10 +15,8 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger
 } from './ui/dropdown-menu'
-
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
-
 import { ArrowRight, LogOut, Moon, Settings, Sun, User } from 'lucide-react'
 
 const Navbar = () => {
@@ -27,7 +24,7 @@ const Navbar = () => {
 	const [open, setOpen] = useState(false)
 
 	return (
-		<nav className='sticky top-0 z-50 bg-background shadow-xs w-full isolate overflow-hidden'>
+		<nav className='sticky top-0 z-50 bg-background  w-full isolate overflow-hidden'>
 			<div className='relative flex items-center justify-between h-14 pl-8 pr-8'>
 				{/* Left */}
 				<div className='flex items-center flex-1'>

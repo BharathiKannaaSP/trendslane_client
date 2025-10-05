@@ -9,13 +9,15 @@ type NavLinkProps = {
 	label: string
 	underline?: boolean
 	hoverNoColorChange?: boolean
+	labelSize?: 'sm' | 'md' | 'lg'
 }
 
 const NavLink = ({
 	href,
 	label,
 	underline = true,
-	hoverNoColorChange = false
+	hoverNoColorChange = false,
+	labelSize
 }: NavLinkProps) => {
 	return (
 		<Link
@@ -27,7 +29,9 @@ const NavLink = ({
 					: underline &&
 							'hover:underline hover:decoration-1 hover:underline-offset-4 hover:text-muted-foreground'
 			)}>
-			<Typography>{label}</Typography>
+			<Typography className={cn(labelSize === 'sm' ? 'text-xs ' : '')}>
+				{label}
+			</Typography>
 		</Link>
 	)
 }

@@ -40,7 +40,7 @@ const BannerImage = () => {
 		<div className='relative w-full h-[calc(100vh-56px)] overflow-hidden'>
 			{/* Banner Image */}
 			<Image
-				key={homeBannerImage[activeImage].id} // triggers fade/re-render
+				key={homeBannerImage[activeImage].id}
 				className='absolute top-0 left-0 object-cover transition-opacity duration-500'
 				fill
 				src={homeBannerImage[activeImage].image}
