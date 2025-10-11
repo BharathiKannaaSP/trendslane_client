@@ -67,6 +67,7 @@ const BannerImage = () => {
 						<div className='flex items-center gap-5 '>
 							{homeBannerImage.map((item, index) => (
 								<Button
+									asChild
 									key={item.id}
 									tabIndex={-1}
 									variant='link'

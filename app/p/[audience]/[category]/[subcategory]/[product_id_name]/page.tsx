@@ -1,10 +1,17 @@
+'use client'
+import ProductNotifyMailPopup from '@/components/ProductNotifyMailPopup'
+import SingleProductExtraInfo from '@/components/SingleProductExtraInfo'
 import SingleProductVideo from '@/components/SingleProductVideo'
 import { Button } from '@/components/ui/button'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
+import { Sheet, SheetTrigger } from '@/components/ui/sheet'
 import { Typography } from '@/components/ui/typography'
+import { ChevronDown, Heart, Mail, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
 
 const product = {
 	id: 'product_123',
@@ -263,87 +270,162 @@ const product = {
 }
 
 const SingleProductDetailsPage = () => {
+	const [selectedSize, setSelectedSize] = useState<string | null>(null)
+
+	const handleSelectSize = (size: any) => {
+		if (size.available) {
+			console.log('Add to cart')
+			setSelectedSize(size.size)
+		}
+	}
+
 	return (
-		<div className='grid grid-cols-[60%_40%] gap-4 pb-10 items-start'>
-			{/* Left */}
-			<div className='relative'>
-				<ul className='grid grid-cols-12 gap-1 m-0 p-0'>
-					<li className='relative flex col-span-6'>
-						<SingleProductVideo />
-					</li>
-
-					{product.colors[0].images.map((img, index) => (
-						<li
-							className={`relative flex ${
-								index < 7 ? 'col-span-6' : 'col-span-4'
-							}`}
-							key={img}>
-							<button className='relative m-0 p-0 border-none bg-[initial] w-full'>
-								<div className='relative flex w-full h-full'>
-									<Image
-										width={1000}
-										height={1000}
-										src={img}
-										alt={img}
-										className='-z-1 block '
-									/>
-								</div>
-							</button>
+		<>
+			<div className='grid grid-cols-1 lg:grid-cols-[60%_40%]  gap-4 pb-10 items-start'>
+				{/* Left */}
+				<div className='relative'>
+					<ul className='grid grid-cols-12 gap-1 m-0 p-0'>
+						<li className='relative flex col-span-6'>
+							<SingleProductVideo />
 						</li>
-					))}
-				</ul>
-			</div>
 
-			{/* Right */}
-			<div className='sticky top-14 self-start flex flex-col w-full gap-x-2 gap-y-8 py-14 px-0  mx-auto  max-w-[calc(100%-122px)]  min-w-[298px]   '>
-				<div className='flex flex-col'>
-					<Typography className='text-md'>{product.title}</Typography>
-					<Typography className='normal-case leading-8 tracking-wide font-normal'>
-						Rs. {product.colors[0].sizes[0].price}.00
-					</Typography>
-				</div>
-				<div className='flex gap-4'>
-					<Image
-						src={product.colors[0].colorImg}
-						alt='img'
-						width={16}
-						height={16}
-					/>
-					<Image
-						src={product.colors[0].colorImg}
-						alt='img'
-						width={16}
-						height={16}
-					/>
-				</div>
-				<Typography className='normal-case tracking-wide font-normal'>
-					The model is wearing size{' '}
-					{product.colors[0].modelDetails[0].wearingSize} and is{' '}
-					{product.colors[0].modelDetails[0].height} tall.
-				</Typography>
-				<Separator />
-				<ScrollArea className='w-full max-h-40'>
-					<ul className='flex gap-2 p-0 m-0 flex-col'>
-						{product.colors[0].sizes.map((size) => (
-							<li key={size.id}>
-								<Button
-									variant='outline'
-									key={size.size}
-									className='flex items-center justify-between w-full'>
-									<div>{size.size}</div>
-									<div>No</div>
-								</Button>
+						{product.colors[0].images.map((img, index) => (
+							<li
+								className={`relative flex ${
+									index < 7 ? 'col-span-6' : 'col-span-4'
+								}`}
+								key={img}>
+								<button className='relative m-0 p-0 border-none bg-[initial] w-full'>
+									<div className='relative flex w-full h-full'>
+										<Image
+											width={1000}
+											height={1000}
+											src={img}
+											alt={img}
+											className='-z-1 block '
+										/>
+									</div>
+								</button>
 							</li>
 						))}
 					</ul>
-				</ScrollArea>
-				<Separator />
+				</div>
 
-				<Button variant='link' className='p-4 w-max'>
-					Size Guide
-				</Button>
+				{/* Right */}
+				<div className='sticky top-14 self-start flex flex-col w-full gap-x-2 gap-y-6 py-14 px-0  mx-auto  max-w-[calc(100%-122px)]  min-w-[298px]   '>
+					<div className='flex flex-col'>
+						<Typography className='text-md'>{product.title}</Typography>
+						<Typography className='normal-case leading-8 tracking-wide font-normal'>
+							Rs. {product.colors[0].sizes[0].price}.00
+						</Typography>
+					</div>
+					<div className='flex gap-4'>
+						<Image
+							src={product.colors[0].colorImg}
+							alt='img'
+							width={16}
+							height={16}
+						/>
+						<Image
+							src={product.colors[0].colorImg}
+							alt='img'
+							width={16}
+							height={16}
+						/>
+					</div>
+					<Typography className='normal-case tracking-wide font-normal'>
+						The model is wearing size{' '}
+						{product.colors[0].modelDetails[0].wearingSize} and is{' '}
+						{product.colors[0].modelDetails[0].height} tall.
+					</Typography>
+					<Separator />
+					<ScrollArea
+						className={`w-full transition-all duration-1000 ${
+							selectedSize ? 'max-h-10' : 'max-h-40'
+						}`}>
+						<ul className='flex gap-2 p-0 m-0 flex-col'>
+							{selectedSize ? (
+								<Button
+									variant='ghost'
+									onClick={() => setSelectedSize(null)}
+									className='flex items-center justify-between w-full'>
+									<Typography>{selectedSize}</Typography>
+									<ChevronDown />
+								</Button>
+							) : (
+								<>
+									{product.colors[0].sizes.map((size) => (
+										<li key={size.id}>
+											{size.available ? (
+												<Button
+													variant='ghost'
+													key={size.size}
+													onClick={() => handleSelectSize(size)}
+													className='flex items-center justify-between w-full'>
+													<Typography>{size.size}</Typography>
+												</Button>
+											) : (
+												<Dialog>
+													<DialogTrigger asChild>
+														<Button
+															variant='ghost'
+															className='flex items-center text-primary/40 justify-between w-full cursor-pointer'>
+															{size.size}
+															<div className='flex items-center gap-2'>
+																<Typography className='mt-1 font-normal normal-case'>
+																	Not available, I want it!
+																</Typography>{' '}
+																<Mail />
+															</div>
+														</Button>
+													</DialogTrigger>
+													<ProductNotifyMailPopup />
+												</Dialog>
+											)}
+										</li>
+									))}
+								</>
+							)}
+						</ul>
+					</ScrollArea>
+					<Separator />
+
+					<Button variant='link' className='p-0 w-max'>
+						<Typography>Size Guide</Typography>
+					</Button>
+					<div className='flex flex-col gap-4'>
+						<div className='flex gap-1 items-center justify-between'>
+							<Button className='w-[calc(100%-40px)] p-6'>
+								<Typography className='text-sm'>ADD</Typography>
+							</Button>
+							<Button className='py-6'>
+								<Typography className='text-sm'>
+									<Heart />
+								</Typography>
+							</Button>
+						</div>
+						<Button variant='outline' className='w-[calc(100%+15px)]  p-6'>
+							<Typography className='text-sm'>Get the Look</Typography>
+						</Button>
+					</div>
+
+					<div className='flex flex-col gap-2'>
+						<Typography>Description</Typography>
+						<Typography className='normal-case font-normal'>
+							{product.desc}
+						</Typography>
+						<Sheet>
+							<SheetTrigger asChild>
+								<Button variant='link' className='w-max p-0'>
+									<Typography>See details</Typography>
+								</Button>
+							</SheetTrigger>
+							<SingleProductExtraInfo />
+						</Sheet>
+					</div>
+				</div>
 			</div>
-		</div>
+		</>
 	)
 }
 

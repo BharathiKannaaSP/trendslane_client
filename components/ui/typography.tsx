@@ -8,7 +8,7 @@ type TypographyProps = {
 
 export const Typography = ({ children, className }: TypographyProps) => {
 	return (
-		<span className={cn('font-semibold uppercase text-[13px]', className)}>
+		<span className={cn('font-semibold uppercase text-sm tracking-normal', className)}>
 			{children}
 		</span>
 	)

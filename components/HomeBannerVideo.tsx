@@ -61,7 +61,7 @@ const HomeBannerVideo = () => {
 				<div className='z-10 absolute right-10 bottom-10'>
 					<Button
 						variant='outline'
-						className='w-10 h-10 bg-transparent hover:bg-transparent text-white hover:text-white'
+						className='w-10 h-10 border-4 border-white bg-transparent hover:bg-transparent text-white hover:text-white'
 						onClick={(e) => {
 							e.preventDefault()
 							handlePlayPause()
