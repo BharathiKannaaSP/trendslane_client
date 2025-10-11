@@ -77,7 +77,7 @@ const CategoryListScroller = () => {
 			<div className='flex flex-col gap-4'>
 				<Typography>Women</Typography>
 				<div className='flex items-center gap-2'>
-					<ul className='flex overflow-auto whitespace-nowrap gap-6 snap-x  [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden'>
+					<ul className='flex overflow-x-auto whitespace-nowrap gap-6 snap-x  [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden'>
 						{categoryWomenScrollerList.map((item) => (
 							<li key={item.id}>
 								<NavLink href={item.link} label={item.label} />

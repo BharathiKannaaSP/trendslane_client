@@ -68,6 +68,7 @@ const BannerImage = () => {
 							{homeBannerImage.map((item, index) => (
 								<Button
 									key={item.id}
+									tabIndex={-1}
 									variant='link'
 									className='text-white uppercase'
 									onMouseEnter={() => setActiveImage(index)}>

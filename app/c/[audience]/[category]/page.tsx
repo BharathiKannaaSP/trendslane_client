@@ -7,9 +7,10 @@ import { useParams } from 'next/navigation'
 import { Sheet, SheetTrigger } from '../../../../components/ui/sheet'
 import { Button } from '../../../../components/ui/button'
 import { Label } from '../../../../components/ui/label'
-import { Input } from '../../../../components/ui/input'
-import { Grid3x3, Square, SquareSplitHorizontal } from 'lucide-react'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import Image from 'next/image'
+import ProductGrid from '@/components/ProductGrid'
+
 const womenSubCategories = [
 	{ id: 1, label: 'All', link: '' },
 	{ id: 2, label: 'Sweaters', link: 'sweaters' },
@@ -31,7 +32,7 @@ const CategoryPage = () => {
 				<Typography>
 					{audience}'s {category}{' '}
 				</Typography>
-				<ul className='flex gap-4 overflow-auto whitespace-nowrap flex-wrap'>
+				<ul className='flex gap-4 overflow-auto whitespace-nowrap'>
 					{womenSubCategories.map((item) => (
 						<li key={item.id}>
 							<NavLink
@@ -48,8 +49,8 @@ const CategoryPage = () => {
 				<Sheet>
 					<SheetTrigger asChild>
 						<Button
-							className='border-0 font-semibold shadow-none bg-transparent hover:bg-transparent cursor-pointer p-0'
-							variant='outline'>
+							className='font-semibold shadow-none cursor-pointer p-0'
+							variant='ghost'>
 							FILTER AND ORDER
 						</Button>
 					</SheetTrigger>
@@ -59,49 +60,44 @@ const CategoryPage = () => {
 					<div className='flex items-center gap-3'>
 						<RadioGroupItem value='comfortable' id='r1' className='sr-only ' />
 						<Label htmlFor='r1' className='cursor-pointer '>
-							{/* <svg
-								xmlns='http://www.w3.org/2000/svg'
-								viewBox='0 0 24 24'
-								width='24'
-								height='24'>
-								<title>Show few items</title>
-								<path d='M21 21H3V3h18zM4 20h16V4H4z'></path>
-							</svg> */}
+							<Image
+								src='/productList/singleGrid.svg'
+								alt='Show few items'
+								width={24}
+								height={24}
+								title='Show few items'
+							/>
 						</Label>
 					</div>
 
 					<div className='flex items-center gap-3'>
 						<RadioGroupItem value='default' id='r2' className='sr-only ' />
 						<Label htmlFor='r2' className='cursor-pointer '>
-							{/* <svg
-								xmlns='http://www.w3.org/2000/svg'
-								viewBox='0 0 24 24'
-								width='24'
-								height='24'>
-								<title>Show more items</title>
-								<path
-									fill-rule='evenodd'
-									d='M12.5 4H20v16h-7.5zm-1-1H21v18H3V3zm0 17H4V4h7.5z'
-									clip-rule='evenodd'></path>
-							</svg> */}
+							<Image
+								src='/productList/twoGrid.svg'
+								alt='Show more items'
+								width={24}
+								height={24}
+								title='Show more items'
+							/>
 						</Label>
 					</div>
 
 					<div className='flex items-center gap-3'>
 						<RadioGroupItem value='compact' id='r3' className='sr-only ' />
 						<Label htmlFor='r3' className='cursor-pointer '>
-							{/* <svg
-								xmlns='http://www.w3.org/2000/svg'
-								viewBox='0 0 24 24'
-								width='24'
-								height='24'>
-								<title>Show maximum items</title>
-								<path d='M3 3v18h18V3zm17 1v7.5h-7.5V4zm-8.5 0v7.5H4V4zM4 20v-7.5h7.5V20zm8.5 0v-7.5H20V20z'></path>
-							</svg> */}
+							<Image
+								src='/productList/moreGrid.svg'
+								alt='Show maximum items'
+								width={24}
+								height={24}
+								title='Show maximum items'
+							/>
 						</Label>
 					</div>
 				</RadioGroup>
 			</div>
+			<ProductGrid />
 		</>
 	)
 }

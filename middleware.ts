@@ -17,10 +17,10 @@ export const middleware = async (req: NextRequest) => {
 	const response = NextResponse.next()
 	if (!countryCookie) {
 		try {
-			const res = await fetch('https://ipinfo.io/json?token=fe20492b7a927a')
-			const data = await res.json()
-			const country = data.country.toLowerCase()
-			setCookie(response, 'country', country)
+			// const res = await fetch('https://ipinfo.io/json?token=fe20492b7a927a')
+			// const data = await res.json()
+			// const country = data.country.toLowerCase()
+			// setCookie(response, 'country', country)
 		} catch (err) {
 			setCookie(response, 'country', 'US')
 		}

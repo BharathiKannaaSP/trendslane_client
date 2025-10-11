@@ -7,7 +7,7 @@ import Link from 'next/link'
 const Subscribe = () => {
 	return (
 		<div className='px-4 mt-10'>
-			<h2 className='text-center uppercase font-semibold'>
+			<h2 className='text-center normal-case font-semibold'>
 				10% off your next purchase by subscribing to the newsletter
 			</h2>
 			<div className='flex flex-col gap-4 justify-center items-center mt-8'>
