@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { poppins, trendslaneFont } from './font/font-configs'
 import Footer from '@/components/Footer'
 import Subscribe from '@/components/Subscribe'
+import { Toaster } from '@/components/ui/sonner'
 
 export const metadata: Metadata = {
 	title: 'Trendslane',
@@ -33,6 +34,7 @@ export default function RootLayout({
 						<Footer />
 					</main>
 				</ThemeProvider>
+				<Toaster duration={Infinity} position='top-right' />
 			</body>
 		</html>
 	)

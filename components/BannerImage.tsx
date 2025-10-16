@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import FadeContent from './FadeContent'
 import NavLink from './ui/nav-link'
 import { Button } from './ui/button'
+import Link from 'next/link'
 
 const homeBannerImage = [
 	{
@@ -67,17 +68,13 @@ const BannerImage = () => {
 						<div className='flex items-center gap-5 '>
 							{homeBannerImage.map((item, index) => (
 								<Button
-									// asChild
+									asChild
 									key={item.id}
 									tabIndex={-1}
 									variant='link'
 									className='text-white uppercase'
 									onMouseEnter={() => setActiveImage(index)}>
-									<NavLink
-										href={`/h/${item.audience}`}
-										label={item.audience}
-										hoverNoColorChange={true}
-									/>
+									<Link href={`/h/${item.audience}`}>{item.audience}</Link>
 								</Button>
 							))}
 						</div>

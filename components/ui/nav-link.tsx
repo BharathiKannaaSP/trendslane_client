@@ -11,6 +11,7 @@ type NavLinkProps = {
 	hoverNoColorChange?: boolean
 	labelSize?: 'sm' | 'md' | 'lg'
 	className?: string
+	linkClass?: string
 }
 
 const NavLink = ({
@@ -19,7 +20,8 @@ const NavLink = ({
 	underline = true,
 	hoverNoColorChange = false,
 	labelSize,
-	className
+	className,
+	linkClass
 }: NavLinkProps) => {
 	return (
 		<Link
@@ -30,7 +32,8 @@ const NavLink = ({
 				hoverNoColorChange
 					? 'hover:underline hover:decoration-1 hover:underline-offset-4'
 					: underline &&
-							'hover:underline hover:decoration-1 hover:underline-offset-4 hover:text-muted-foreground'
+							'hover:underline hover:decoration-1 hover:underline-offset-4 hover:text-muted-foreground',
+				linkClass
 			)}>
 			<Typography
 				className={cn(

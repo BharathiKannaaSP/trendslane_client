@@ -1,17 +1,29 @@
 'use client'
 import ProductNotifyMailPopup from '@/components/ProductNotifyMailPopup'
+import ProductRecommendations from '@/components/ProductRecommendations'
 import ProductReviews from '@/components/ProductReviews'
 import SingleProductExtraInfo from '@/components/SingleProductExtraInfo'
 import SingleProductVideo from '@/components/SingleProductVideo'
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator
+} from '@/components/ui/breadcrumb'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
+import NavLink from '@/components/ui/nav-link'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetTrigger } from '@/components/ui/sheet'
+import { customToast } from '@/components/ui/sonner'
 import { Typography } from '@/components/ui/typography'
-import { ChevronDown, Heart, Mail } from 'lucide-react'
+import { ChevronDown, Heart, Mail, X } from 'lucide-react'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { toast } from 'sonner'
 
 const product = {
 	id: 'product_123',
@@ -366,10 +378,9 @@ const SingleProductDetailsPage = () => {
 					</Typography>
 					<Separator />
 					<ScrollArea
-					className={`w-full transition-all duration-1000 ${
-						selectedSize ? 'max-h-10' : 'max-h-40'
-					}`}
-					>
+						className={`w-full transition-all duration-1000 ${
+							selectedSize ? 'max-h-10' : 'max-h-40'
+						}`}>
 						<ul className='flex gap-2 p-0 m-0 flex-col'>
 							{selectedSize ? (
 								<Button
@@ -422,7 +433,13 @@ const SingleProductDetailsPage = () => {
 					</Button>
 					<div className='flex flex-col gap-4'>
 						<div className='flex gap-1 items-center justify-between'>
-							<Button className='w-[calc(100%-40px)] p-6'>
+							<Button
+								className='w-[calc(100%-40px)] p-6'
+								onClick={() =>
+									customToast({
+										component: <BagToaster />
+									})
+								}>
 								<Typography className='text-sm'>ADD</Typography>
 							</Button>
 							<Button className='py-6'>
@@ -453,9 +470,93 @@ const SingleProductDetailsPage = () => {
 				</div>
 			</div>
 			{/* Bottom */}
+
 			<ProductReviews />
+			<ProductRecommendations title='In same the style' />
+			<ProductRecommendations title='Combined Perfectly' />
+			<ProductRecommendations title='Popular right now' />
+			<ProductRecommendations title='You also viewed' />
+			<Breadcrumb className='p-10'>
+				<BreadcrumbList>
+					<BreadcrumbItem>
+						<BreadcrumbLink href='/'>
+							<Typography>Home</Typography>
+						</BreadcrumbLink>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator>
+						<div className='h-4 -mt-1 w-[1px] rotate-20 bg-primary' />
+					</BreadcrumbSeparator>
+					<BreadcrumbItem>
+						<BreadcrumbLink href='/components'>
+							<Typography>New now</Typography>
+						</BreadcrumbLink>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator>
+						<div className='h-4 -mt-1 w-[1px] rotate-20 bg-primary' />
+					</BreadcrumbSeparator>
+
+					<BreadcrumbItem>
+						<BreadcrumbLink href='/components'>
+							<Typography>Coats</Typography>
+						</BreadcrumbLink>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator>
+						<div className='h-4 -mt-1 w-[1px] rotate-20 bg-primary' />
+					</BreadcrumbSeparator>
+					<BreadcrumbItem>
+						<BreadcrumbPage>
+							<Typography>Coats</Typography>
+						</BreadcrumbPage>
+					</BreadcrumbItem>
+				</BreadcrumbList>
+			</Breadcrumb>
 		</>
 	)
 }
 
 export default SingleProductDetailsPage
+
+const BagToaster = () => {
+	return (
+		<div className='bg-background border-2 border-primary w-120 h-80 fixed right-4 top-30 p-4 z-99'>
+			<div className='flex flex-col'>
+				<div className='flex justify-between items-center'>
+					<Typography>Added to your shopping bag</Typography>
+					<Button variant='ghost' onClick={() => toast.dismiss()}>
+						<X />
+					</Button>
+				</div>
+				<div className='mt-4 flex items-end gap-2'>
+					<Image
+						src='https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17011240_32_B.jpg'
+						alt='cart_1'
+						width={140}
+						height={140}
+					/>
+					<div className='flex flex-col gap-2'>
+						<Typography className='w-40 truncate font-normal normal-case'>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+							soluta sit accusamus debitis reprehenderit nisi atque optio
+							dolorem, quod, asperiores recusandae itaque inventore adipisci.
+							Consequatur fugit cumque numquam laborum consequuntur!
+						</Typography>
+						<Typography className='w-40 truncate font-normal normal-case'>
+							Rs. 4000.00
+						</Typography>
+						<Typography className='w-40 truncate font-normal normal-case'>
+							L Chocolate
+						</Typography>
+					</div>
+				</div>
+				<div className='flex gap-2 w-full mt-2'>
+					<Button className='w-full' asChild>
+						<NavLink linkClass='w-full' label='Checkout' href='/checkout' />
+					</Button>
+					<Button asChild variant='outline' className='w-full'>
+						<NavLink linkClass='w-full' label='View bag' href='/cart' />
+					</Button>
+				</div>
+			</div>
+		</div>
+	)
+}
