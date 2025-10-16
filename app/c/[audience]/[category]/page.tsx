@@ -30,7 +30,8 @@ const CategoryPage = () => {
 		<>
 			<div className='flex flex-col gap-2 pt-6 px-8'>
 				<Typography>
-					{audience}'s {category}{' '}
+					{audience}
+					&apos; {category}{' '}
 				</Typography>
 				<ul className='flex gap-4 overflow-auto whitespace-nowrap'>
 					{womenSubCategories.map((item) => (

@@ -1,17 +1,12 @@
 import React from 'react'
 import {
-	Sheet,
 	SheetClose,
 	SheetContent,
-	SheetDescription,
 	SheetFooter,
 	SheetHeader,
-	SheetTitle,
-	SheetTrigger
+	SheetTitle
 } from './ui/sheet'
 import { Button } from './ui/button'
-import { Label } from './ui/label'
-import { Input } from './ui/input'
 import {
 	Accordion,
 	AccordionContent,

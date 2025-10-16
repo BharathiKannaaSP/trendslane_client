@@ -1,8 +1,6 @@
 import React from 'react'
 import { Typography } from './ui/typography'
 import NavLink from './ui/nav-link'
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from './ui/button'
 
 const categoryWomenScrollerList = [
 	{ id: 1, label: 'New Now', link: '/c/women/new-now' },

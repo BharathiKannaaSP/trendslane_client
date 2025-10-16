@@ -23,6 +23,7 @@ const NavLink = ({
 }: NavLinkProps) => {
 	return (
 		<Link
+			prefetch
 			href={href}
 			className={cn(
 				'relative no-underline text-sm',

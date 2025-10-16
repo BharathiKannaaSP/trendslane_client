@@ -19,10 +19,10 @@ const SingleProductVideo = () => {
 		}
 	}
 	return (
-		<div className='relative'>
+		<>
 			<video
 				ref={videoRef}
-				className='w-full h-full'
+				className='w-full h-full object-cover'
 				src='https://shop.mango.com/assets/rcs/pics/static/T1/videos/S6/A1/17067907_92.mp4?ts=1759397364539'
 				loop
 				autoPlay
@@ -36,13 +36,13 @@ const SingleProductVideo = () => {
 						handlePlayPause()
 					}}>
 					{play ? (
-						<Pause className='h-[2rem] w-[2rem] ' />
+						<Pause aria-label='Pause' className='h-[2rem] w-[2rem] ' />
 					) : (
-						<Play className='h-[2rem] w-[2rem] ' />
+						<Play aria-label='Play' className='h-[2rem] w-[2rem] ' />
 					)}
 				</Button>
 			</div>
-		</div>
+		</>
 	)
 }
 

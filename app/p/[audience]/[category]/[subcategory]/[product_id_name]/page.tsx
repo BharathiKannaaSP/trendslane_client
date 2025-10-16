@@ -1,5 +1,6 @@
 'use client'
 import ProductNotifyMailPopup from '@/components/ProductNotifyMailPopup'
+import ProductReviews from '@/components/ProductReviews'
 import SingleProductExtraInfo from '@/components/SingleProductExtraInfo'
 import SingleProductVideo from '@/components/SingleProductVideo'
 import { Button } from '@/components/ui/button'
@@ -8,9 +9,8 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetTrigger } from '@/components/ui/sheet'
 import { Typography } from '@/components/ui/typography'
-import { ChevronDown, Heart, Mail, MessageCircle } from 'lucide-react'
+import { ChevronDown, Heart, Mail } from 'lucide-react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 const product = {
@@ -272,7 +272,31 @@ const product = {
 const SingleProductDetailsPage = () => {
 	const [selectedSize, setSelectedSize] = useState<string | null>(null)
 
-	const handleSelectSize = (size: any) => {
+	const handleSelectSize = (
+		size:
+			| {
+					id: string
+					size: string
+					available: boolean
+					availableCountries: string[]
+					price: number
+					discountPrice: number // ✅ for sale or discount display
+					currency: string // ✅ currency standardization
+					stock: number
+					sku: string // ✅ for inventory tracking
+			  }
+			| {
+					id: string
+					size: string
+					available: boolean
+					price: number
+					currency: string
+					stock: number
+					sku: string
+					availableCountries?: undefined
+					discountPrice?: undefined
+			  }
+	) => {
 		if (size.available) {
 			console.log('Add to cart')
 			setSelectedSize(size.size)
@@ -286,7 +310,9 @@ const SingleProductDetailsPage = () => {
 				<div className='relative'>
 					<ul className='grid grid-cols-12 gap-1 m-0 p-0'>
 						<li className='relative flex col-span-6'>
-							<SingleProductVideo />
+							<div className='relative flex w-full h-[400px] md:h-[600px] lg:h-[800px]'>
+								<SingleProductVideo />
+							</div>
 						</li>
 
 						{product.colors[0].images.map((img, index) => (
@@ -296,13 +322,13 @@ const SingleProductDetailsPage = () => {
 								}`}
 								key={img}>
 								<button className='relative m-0 p-0 border-none bg-[initial] w-full'>
-									<div className='relative flex w-full h-full'>
+									<div className='relative flex w-full h-[400px] md:h-[600px] lg:h-[800px]'>
 										<Image
-											width={1000}
-											height={1000}
+											fill
 											src={img}
 											alt={img}
-											className='-z-1 block '
+											className='-z-1 block object-cover'
+											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 										/>
 									</div>
 								</button>
@@ -340,9 +366,10 @@ const SingleProductDetailsPage = () => {
 					</Typography>
 					<Separator />
 					<ScrollArea
-						className={`w-full transition-all duration-1000 ${
-							selectedSize ? 'max-h-10' : 'max-h-40'
-						}`}>
+					className={`w-full transition-all duration-1000 ${
+						selectedSize ? 'max-h-10' : 'max-h-40'
+					}`}
+					>
 						<ul className='flex gap-2 p-0 m-0 flex-col'>
 							{selectedSize ? (
 								<Button
@@ -369,7 +396,7 @@ const SingleProductDetailsPage = () => {
 													<DialogTrigger asChild>
 														<Button
 															variant='ghost'
-															className='flex items-center text-primary/40 justify-between w-full cursor-pointer'>
+															className='flex items-center text-primary/80 justify-between w-full cursor-pointer'>
 															{size.size}
 															<div className='flex items-center gap-2'>
 																<Typography className='mt-1 font-normal normal-case'>
@@ -400,7 +427,7 @@ const SingleProductDetailsPage = () => {
 							</Button>
 							<Button className='py-6'>
 								<Typography className='text-sm'>
-									<Heart />
+									<Heart aria-label='Add to wishlist' />
 								</Typography>
 							</Button>
 						</div>
@@ -425,10 +452,10 @@ const SingleProductDetailsPage = () => {
 					</div>
 				</div>
 			</div>
+			{/* Bottom */}
+			<ProductReviews />
 		</>
 	)
 }
 
 export default SingleProductDetailsPage
-
-//  overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden

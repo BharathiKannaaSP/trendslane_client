@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
 		remotePatterns: [
 			{
 				hostname: 'shop.mango.com'
+			},
+			{
+				hostname: 'images.pexels.com'
 			}
 		]
 	}

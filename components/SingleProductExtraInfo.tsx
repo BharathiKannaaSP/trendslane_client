@@ -1,22 +1,13 @@
 import React from 'react'
-import {
-	SheetClose,
-	SheetContent,
-	SheetDescription,
-	SheetFooter,
-	SheetHeader,
-	SheetTitle
-} from '@/components/ui/sheet'
+import { SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { Button } from './ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
 import { Typography } from './ui/typography'
 import { ScrollArea, ScrollBar } from './ui/scroll-area'
 import { Separator } from './ui/separator'
-import { useRouter } from 'next/navigation'
 import NavLink from './ui/nav-link'
 
 const SingleProductExtraInfo = () => {
-	const router = useRouter()
 	return (
 		<SheetContent className='w-full sm:w-[600px] sm:max-w-[600px] max-h-[100vh] overflow-y-auto'>
 			<SheetHeader>

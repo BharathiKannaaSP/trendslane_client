@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import React, { useState } from 'react'
 import { useTheme } from 'next-themes'
 import { Button } from './ui/button'
@@ -85,7 +84,7 @@ const Navbar = () => {
 										<Button className='w-full font-semibold'>Sign in</Button>
 										<div className='flex items-center justify-center gap-2'>
 											<Typography className='capitalize font-normal text-muted-foreground'>
-												Don't have an account?
+												Don &apos;t have an account?
 											</Typography>
 											<Button asChild className='p-0 underline' variant='link'>
 												<NavLink
@@ -136,9 +135,9 @@ const Navbar = () => {
 					{/* User Menu */}
 					<DropdownMenu>
 						<DropdownMenuTrigger>
-							<Avatar className='size-12'>
+							<Avatar>
 								<AvatarImage
-									src='https://images.pexels.com/photos/2169428/pexels-photo-2169428.jpeg'
+									src='https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg'
 									alt='avatar'
 								/>
 								<AvatarFallback>RG</AvatarFallback>

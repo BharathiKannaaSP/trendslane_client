@@ -67,9 +67,9 @@ const HomeBannerVideo = () => {
 							handlePlayPause()
 						}}>
 						{play ? (
-							<Pause className='h-[2rem] w-[2rem] ' />
+							<Pause aria-label='Pause' className='h-[2rem] w-[2rem] ' />
 						) : (
-							<Play className='h-[2rem] w-[2rem] ' />
+							<Play aria-label='Play' className='h-[2rem] w-[2rem] ' />
 						)}
 					</Button>
 				</div>
