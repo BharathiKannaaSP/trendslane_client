@@ -203,6 +203,54 @@ const ProductGrid = () => {
 										<Button variant='outline' className='border-0'>
 											<Typography className='text-sm'>S</Typography>
 										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
+										<Button variant='outline' className='border-0'>
+											<Typography className='text-sm'>S</Typography>
+										</Button>
 									</div>
 								</ScrollArea>
 							</div>

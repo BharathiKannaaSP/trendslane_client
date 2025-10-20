@@ -34,7 +34,7 @@ export default function RootLayout({
 						<Footer />
 					</main>
 				</ThemeProvider>
-				<Toaster duration={Infinity} position='top-right' />
+				<Toaster duration={3000} position='top-right' />
 			</body>
 		</html>
 	)

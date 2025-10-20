@@ -1,4 +1,5 @@
 'use client'
+import BagToaster from '@/components/BagToaster'
 import ProductNotifyMailPopup from '@/components/ProductNotifyMailPopup'
 import ProductRecommendations from '@/components/ProductRecommendations'
 import ProductReviews from '@/components/ProductReviews'
@@ -17,7 +18,13 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import NavLink from '@/components/ui/nav-link'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
-import { Sheet, SheetTrigger } from '@/components/ui/sheet'
+import {
+	Sheet,
+	SheetContent,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger
+} from '@/components/ui/sheet'
 import { customToast } from '@/components/ui/sonner'
 import { Typography } from '@/components/ui/typography'
 import { ChevronDown, Heart, Mail, X } from 'lucide-react'
@@ -47,10 +54,10 @@ const product = {
 			colorImg:
 				'https://shop.mango.com/assets/rcs/pics/static/T1/colv3/17055804_05_C.png',
 			images: [
-				'https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17055804_05.jpg',
 				'https://shop.mango.com/assets/rcs/pics/static/T1/fotos/outfit/S/17055804_05-99999999_01.jpg',
 				'https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17055804_05_R.jpg',
 				'https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17055804_05_D1.jpg',
+				'https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17055804_05.jpg',
 				'https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17055804_05_D8.jpg',
 				'https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17055804_05_B.jpg',
 				'https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17055804_05_D0.jpg'
@@ -283,7 +290,9 @@ const product = {
 
 const SingleProductDetailsPage = () => {
 	const [selectedSize, setSelectedSize] = useState<string | null>(null)
-
+	const [zoomImage, setZoomImage] = useState<string>(
+		'https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17035981_39.jpg'
+	)
 	const handleSelectSize = (
 		size:
 			| {
@@ -315,6 +324,7 @@ const SingleProductDetailsPage = () => {
 		}
 	}
 
+	console.log(zoomImage, 'ZoomImage')
 	return (
 		<>
 			<div className='grid grid-cols-1 lg:grid-cols-[60%_40%]  gap-4 pb-10 items-start'>
@@ -333,24 +343,106 @@ const SingleProductDetailsPage = () => {
 									index < 7 ? 'col-span-6' : 'col-span-4'
 								}`}
 								key={img}>
-								<button className='relative m-0 p-0 border-none bg-[initial] w-full'>
-									<div className='relative flex w-full h-[400px] md:h-[600px] lg:h-[800px]'>
-										<Image
-											fill
-											src={img}
-											alt={img}
-											className='-z-1 block object-cover'
-											sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-										/>
-									</div>
-								</button>
+								<Sheet>
+									<SheetTrigger asChild>
+										<button className='relative w-full'>
+											<div className='relative flex w-full h-[400px] md:h-[600px] lg:h-[800px]'>
+												<Image
+													fill
+													src={img}
+													alt={img}
+													className='object-cover'
+													sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+												/>
+											</div>
+										</button>
+									</SheetTrigger>
+
+									<SheetContent className='w-full sm:max-w-full h-full p-0'>
+										<ScrollArea className='h-screen'>
+											<SheetHeader className='relative'>
+												<SheetTitle>
+													Lorem ipsum, dolor sit amet consectetur
+												</SheetTitle>
+											</SheetHeader>
+
+											<div className='w-full relative'>
+												<div className='relative w-full aspect-[3/7] md:aspect-[4/7]'>
+													<Image
+														fill
+														src={zoomImage}
+														alt={'zoomImage'}
+														className='object-cover rounded-md -z-1'
+													/>
+												</div>
+												<div className=' h-full'>
+													<div className='fixed top-20 left-10 flex flex-col gap-2 '>
+														<div className='w-16 h-20 relative'>
+															<Image
+																src='https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17027139_32.jpg?imwidth=2048&imdensity=1&ts=1760105109586'
+																fill
+																alt='thm'
+																className='object-cover'
+																onMouseEnter={() =>
+																	setZoomImage(
+																		'https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17027139_32.jpg?imwidth=2048&imdensity=1&ts=1760105109586'
+																	)
+																}
+															/>
+														</div>
+														<div className='w-16 h-20 relative'>
+															<Image
+																src='https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17027139_32.jpg?imwidth=2048&imdensity=1&ts=1760105109586'
+																fill
+																alt='thm'
+																className='object-cover'
+															/>
+														</div>
+														<div className='w-16 h-20 relative'>
+															<Image
+																src='https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17027139_32.jpg?imwidth=2048&imdensity=1&ts=1760105109586'
+																fill
+																alt='thm'
+																className='object-cover'
+															/>
+														</div>
+														<div className='w-16 h-20 relative'>
+															<Image
+																src='https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17027139_32.jpg?imwidth=2048&imdensity=1&ts=1760105109586'
+																fill
+																alt='thm'
+																className='object-cover'
+															/>
+														</div>
+														<div className='w-16 h-20 relative'>
+															<Image
+																src='https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17027139_32.jpg?imwidth=2048&imdensity=1&ts=1760105109586'
+																fill
+																alt='thm'
+																className='object-cover'
+															/>
+														</div>
+														<div className='w-16 h-20 relative'>
+															<Image
+																src='https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17027139_32.jpg?imwidth=2048&imdensity=1&ts=1760105109586'
+																fill
+																alt='thm'
+																className='object-cover'
+															/>
+														</div>
+													</div>
+												</div>
+											</div>
+										</ScrollArea>
+									</SheetContent>
+								</Sheet>
 							</li>
 						))}
 					</ul>
 				</div>
 
 				{/* Right */}
-				<div className='sticky top-14 self-start flex flex-col w-full gap-x-2 gap-y-6 py-14 px-0  mx-auto  max-w-[calc(100%-122px)]  min-w-[298px]   '>
+				<div className='sticky top-14 self-start flex flex-col w-full gap-x-2 gap-y-6 py-14 px-0  mx-auto  max-w-[calc(100%-122px)]  min-w-[298px]'>
 					<div className='flex flex-col'>
 						<Typography className='text-md'>{product.title}</Typography>
 						<Typography className='normal-case leading-8 tracking-wide font-normal'>
@@ -515,48 +607,3 @@ const SingleProductDetailsPage = () => {
 }
 
 export default SingleProductDetailsPage
-
-const BagToaster = () => {
-	return (
-		<div className='bg-background border-2 border-primary w-120 h-80 fixed right-4 top-30 p-4 z-99'>
-			<div className='flex flex-col'>
-				<div className='flex justify-between items-center'>
-					<Typography>Added to your shopping bag</Typography>
-					<Button variant='ghost' onClick={() => toast.dismiss()}>
-						<X />
-					</Button>
-				</div>
-				<div className='mt-4 flex items-end gap-2'>
-					<Image
-						src='https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17011240_32_B.jpg'
-						alt='cart_1'
-						width={140}
-						height={140}
-					/>
-					<div className='flex flex-col gap-2'>
-						<Typography className='w-40 truncate font-normal normal-case'>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-							soluta sit accusamus debitis reprehenderit nisi atque optio
-							dolorem, quod, asperiores recusandae itaque inventore adipisci.
-							Consequatur fugit cumque numquam laborum consequuntur!
-						</Typography>
-						<Typography className='w-40 truncate font-normal normal-case'>
-							Rs. 4000.00
-						</Typography>
-						<Typography className='w-40 truncate font-normal normal-case'>
-							L Chocolate
-						</Typography>
-					</div>
-				</div>
-				<div className='flex gap-2 w-full mt-2'>
-					<Button className='w-full' asChild>
-						<NavLink linkClass='w-full' label='Checkout' href='/checkout' />
-					</Button>
-					<Button asChild variant='outline' className='w-full'>
-						<NavLink linkClass='w-full' label='View bag' href='/cart' />
-					</Button>
-				</div>
-			</div>
-		</div>
-	)
-}

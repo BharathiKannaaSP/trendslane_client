@@ -22,7 +22,12 @@ const ProductRecommendations = ({ title }: { title: string }) => {
 			<Carousel
 				className='w-full pt-8'
 				opts={{
-					slidesToScroll: 5
+					slidesToScroll: 5,
+					breakpoints: {
+						'(max-width: 640px)' : {
+							slidesToScroll: 2
+						}
+					}
 				}}>
 				<CarouselContent>
 					{Array.from({ length: 100 }).map((_, index) => (
@@ -120,7 +125,7 @@ const ProductRecommendations = ({ title }: { title: string }) => {
 															/>
 														</div>
 													</div>
-													<Heart className='mr-4 -mt-0' />
+													<Heart size={16} className='mr-4 -mt-0' />
 												</div>
 											</div>
 										</form>
